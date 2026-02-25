@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RABA Payment</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: url('raba.png') no-repeat center center fixed;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+/* ===== BRAND LOGO ===== */
+.brand-logo {
+    width: 220px;
+    margin-bottom: 40px;
+    animation: fadeDown 1s ease;
+}
+
+/* ===== CARD STYLE ===== */
+.box {
+    width: 100%;
+    max-width: 450px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 18px;
+    padding: 22px 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.8s ease forwards;
+}
+
+.box:nth-of-type(1) { animation-delay: 0.2s; }
+.box:nth-of-type(2) { animation-delay: 0.4s; }
+.box:nth-of-type(3) { animation-delay: 0.6s; }
+.box:nth-of-type(4) { animation-delay: 0.8s; }
+
+/* Payment Logo */
+.payment-logo {
+    width: 55px;
+}
+
+/* Info */
+.info {
+    flex: 1;
+    margin-left: 15px;
+}
+
+.info h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.info p {
+    font-size: 16px;
+    font-weight: 600;
+    color: #38bdf8;
+    letter-spacing: 1px;
+}
+
+/* Button */
+button {
+    padding: 8px 18px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #0ea5e9, #2563eb);
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.07);
+    box-shadow: 0 6px 18px rgba(14,165,233,0.4);
+}
+
+/* Toast */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    background: #0ea5e9;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 30px;
+    font-size: 14px;
+    opacity: 0;
+    transition: 0.4s;
+}
+
+.toast.show {
+    opacity: 1;
+}
+
+/* Animations */
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<img src="logo.png" class="brand-logo">
+
+<!-- BCA -->
+<div class="box">
+    <img src="bca.png" class="payment-logo">
+    <div class="info">
+        <h3>Alexis Rabu Wora</h3>
+        <p id="bca">3760409617</p>
+    </div>
+    <button onclick="copyText('bca')">Copy</button>
+</div>
+
+<!-- SEABANK -->
+<div class="box">
+    <img src="seabank.png" class="payment-logo">
+    <div class="info">
+        <h3>Alexis Rabu Wora</h3>
+        <p id="seabank">901290800131</p>
+    </div>
+    <button onclick="copyText('seabank')">Copy</button>
+</div>
+
+<!-- SHOPEEPAY -->
+<div class="box">
+    <img src="shopeepay.png" class="payment-logo">
+    <div class="info">
+        <h3>Alexis Rabu Wora</h3>
+        <p id="shopee">082214361096</p>
+    </div>
+    <button onclick="copyText('shopee')">Copy</button>
+</div>
+
+<!-- DANA -->
+<div class="box">
+    <img src="dana.png" class="payment-logo">
+    <div class="info">
+        <h3>Bunga Apriyani</h3>
+        <p id="dana">08987754285</p>
+    </div>
+    <button onclick="copyText('dana')">Copy</button>
+</div>
+
+<div id="toast" class="toast">Nomor berhasil disalin!</div>
+
+<script>
+function copyText(id) {
+    var text = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(text);
+
+    var toast = document.getElementById("toast");
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 2000);
+}
+</script>
+
+</body>
+</html>
